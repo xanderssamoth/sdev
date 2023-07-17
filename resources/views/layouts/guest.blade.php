@@ -52,7 +52,7 @@
         <!-- ======= Footer ======= -->
         <footer id="footer">
             <div class="container">
-                <p class="mb-3"><img src="{{ asset('assets/img/logo-bg.png') }}" alt="" class="rounded-circle" width="100"></p>
+                <p class="mb-3"><img src="{{ asset('assets/img/logo-bg-1.png') }}" alt="" class="rounded-circle" width="100"></p>
 
                 <div class="row">
                     <div class="col-lg-6 col-lg-8 col-12 mx-auto">

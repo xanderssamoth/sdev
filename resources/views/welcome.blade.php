@@ -19,16 +19,21 @@
             <section id="about" class="about">
                 <div class="container" data-aos="fade-up">
                     <div class="section-title">
-                        <h2>About</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                        <h2>A propos</h2>
+
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-8 col-12 mx-auto">
+                                <p>SDEV est une société offrant des solutions informatiques, des accompagnements et conseil en stratégie marketing digitale et assure la couverture médiatique des évènements de tout genre..</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+                    <div class="row g-lg-5">
+                        <div class="col-lg-3">
+                            <img src="{{ asset('assets/img/logo-bg-2.png') }}" class="img-fluid rounded-5" alt="">
                         </div>
-                        <div class="col-lg-8 pt-4 pt-lg-0 content">
-                            <h3>UI/UX Designer &amp; Web Developer.</h3>
+                        <div class="col-lg-9 pt-4 pt-lg-0 content">
+                            <h3 class="mb-4">Design, Web / Mobile Dev &amp; Community Management.</h3>
                             <p class="fst-italic"></p>
 
                             <div class="row">
