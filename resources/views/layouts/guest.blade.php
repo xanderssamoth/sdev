@@ -40,7 +40,9 @@
             <nav id="navbar" class="navbar nav-menu">
                 <ul>
                     <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
-                    <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>A propos</span></a></li>
+                    <li><a href="#about" class="nav-link scrollto"><i class="bi bi-question-circle"></i> <span>A propos</span></a></li>
+                    <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </header><!-- End Header -->
