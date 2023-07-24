@@ -1,31 +1,30 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
+Route::get('/', function () { return view('welcome'); }); // Home
+Route::get('/symlink', function () { return view('symlink'); }); // Generate symbolic link
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+// Administration
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/admin', 'App\Http\Controllers\API\AdminController@index')->name('admin.home');
+
+    Route::get('/account', 'App\Http\Controllers\API\AdminController@account')->name('admin.account');
+    Route::post('/account', 'App\Http\Controllers\API\AdminController@updateAccount');
+
+    Route::get('/message', 'App\Http\Controllers\API\AdminController@message')->name('admin.message');
+    Route::post('/message', 'App\Http\Controllers\API\AdminController@sendMessage');
+
+    Route::get('/project', 'App\Http\Controllers\API\AdminController@project')->name('admin.project');
+    Route::post('/project', 'App\Http\Controllers\API\AdminController@addProject');
+
+    Route::get('/team', 'App\Http\Controllers\API\AdminController@team')->name('admin.team');
+    Route::post('/team', 'App\Http\Controllers\API\AdminController@addMember');
 });
 
 require __DIR__.'/auth.php';
