@@ -106,7 +106,6 @@
 
         <script type="text/javascript">
             autosize($('textarea'));
-            $('main').css('min-height', ($(document).height() - $('footer').height()));
         </script>
     </body>
 </html>
