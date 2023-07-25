@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/jquery/jquery-ui/jquery-ui.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/cropper/css/cropper.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/aos/aos.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/mdb/css/mdb.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}">
@@ -57,13 +58,13 @@
         <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
         <!-- ======= Header ======= -->
         <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
+            <nav id="navbar" class="navbar nav-menu shadow-0">
                 <ul>
                     <li><a href="{{ route('admin.home') }}" class="nav-link{{ Route::is('admin.home') ? ' active' : '' }}"><i class="bi bi-speedometer"></i> <span>Accueil</span></a></li>
-                    <li><a href="{{ route('admin.account') }}" class="nav-link{{ Route::is('admin.account') ? ' active' : '' }}"><i class="bi bi-person-gear"></i> <span>Mon compte</span></a></li>
                     <li><a href="{{ route('admin.message') }}" class="nav-link{{ Route::is('admin.message') ? ' active' : '' }}"><i class="bi bi-chat-left-dots"></i> <span>Messages</span></a></li>
                     <li><a href="{{ route('admin.project') }}" class="nav-link{{ Route::is('admin.project') ? ' active' : '' }}"><i class="bi bi-person-workspace"></i> <span>Projets</span></a></li>
                     <li><a href="{{ route('admin.team') }}" class="nav-link{{ Route::is('admin.team') ? ' active' : '' }}"><i class="bi bi-people"></i> <span>Equipe</span></a></li>
+                    <li><a href="{{ route('admin.account') }}" class="nav-link{{ Route::is('admin.account') ? ' active' : '' }}"><i class="bi bi-person-gear"></i> <span>Mon compte</span></a></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </header><!-- End Header -->
@@ -71,8 +72,8 @@
 @yield('app-content')
 
         <!-- ======= Footer ======= -->
-        <footer id="footer">
-            <div class="container">
+        <footer id="footer" class="pt-0 bg-transparent">
+            <div class="container pt-4 border-top border-default">
                 <div class="copyright">
                     &copy; Copyright <strong><span>SDEV</span></strong>. Tous droits réservés
                 </div>
@@ -90,6 +91,7 @@
         <script src="{{ asset('assets/vendor/jquery/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+        <script src="{{ asset('assets/vendor/mdb/js/mdb.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>

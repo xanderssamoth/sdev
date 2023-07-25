@@ -27,7 +27,24 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        // Find all messages API URL
+        $all_messages = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message';
+        // Find all messages API calling
+        $messages = $this::$api_client_manager->call('GET', $all_messages);
+        // Find all projects API URL
+        $all_projects = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/project';
+        // Find all projects API calling
+        $projects = $this::$api_client_manager->call('GET', $all_projects);
+        // Find all collaborators API URL
+        $all_collaborators = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/Collaborateur';
+        // Find all collaborators API calling
+        $collaborators = $this::$api_client_manager->call('GET', $all_collaborators);
+
+        return view('dashboard', [
+            'messages' => $messages->data,
+            'projects' => $projects->data,
+            'collaborators' => $collaborators->data,
+        ]);
     }
 
     /**

@@ -39,7 +39,9 @@ class ProjectController extends BaseController
         $inputs = [
             'project_name' => $request->project_name,
             'project_description' => $request->project_description,
-            'project_url' => $request->project_url,
+            'web_url' => $request->web_url,
+            'android_url' => $request->android_url,
+            'ios_url' => $request->ios_url,
             'logo_url' => $request->logo_url,
             'status_id' => $request->status_id,
             'user_id' => $request->user_id,
@@ -108,7 +110,9 @@ class ProjectController extends BaseController
             'id' => $request->id,
             'project_name' => $request->project_name,
             'project_description' => $request->project_description,
-            'project_url' => $request->project_url,
+            'web_url' => $request->web_url,
+            'android_url' => $request->android_url,
+            'ios_url' => $request->ios_url,
             'logo_url' => $request->logo_url,
             'status_id' => $request->status_id,
             'user_id' => $request->user_id
@@ -145,9 +149,23 @@ class ProjectController extends BaseController
             ]);
         }
 
-        if ($inputs['project_url'] != null) {
+        if ($inputs['web_url'] != null) {
             $project->update([
-                'project_url' => $request->project_url,
+                'web_url' => $request->web_url,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['android_url'] != null) {
+            $project->update([
+                'android_url' => $request->android_url,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['ios_url'] != null) {
+            $project->update([
+                'ios_url' => $request->ios_url,
                 'updated_at' => now(),
             ]);
         }
