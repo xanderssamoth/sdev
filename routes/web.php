@@ -12,19 +12,19 @@ Route::get('/symlink', function () { return view('symlink'); }); // Generate sym
 
 // Administration
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', 'App\Http\Controllers\API\AdminController@index')->name('admin.home');
+    Route::get('/admin', 'App\Http\Controllers\Web\AdminController@index')->name('admin.home');
 
-    Route::get('/account', 'App\Http\Controllers\API\AdminController@account')->name('admin.account');
-    Route::post('/account', 'App\Http\Controllers\API\AdminController@updateAccount');
+    Route::get('/account', 'App\Http\Controllers\Web\AdminController@account')->name('admin.account');
+    Route::post('/account', 'App\Http\Controllers\Web\AdminController@updateAccount');
 
-    Route::get('/message', 'App\Http\Controllers\API\AdminController@message')->name('admin.message');
-    Route::post('/message', 'App\Http\Controllers\API\AdminController@sendMessage');
+    Route::get('/message', 'App\Http\Controllers\Web\AdminController@message')->name('admin.message');
+    Route::post('/message', 'App\Http\Controllers\Web\AdminController@sendMessage');
 
-    Route::get('/project', 'App\Http\Controllers\API\AdminController@project')->name('admin.project');
-    Route::post('/project', 'App\Http\Controllers\API\AdminController@addProject');
+    Route::get('/project', 'App\Http\Controllers\Web\AdminController@project')->name('admin.project');
+    Route::post('/project', 'App\Http\Controllers\Web\AdminController@addProject');
 
-    Route::get('/team', 'App\Http\Controllers\API\AdminController@team')->name('admin.team');
-    Route::post('/team', 'App\Http\Controllers\API\AdminController@addMember');
+    Route::get('/team', 'App\Http\Controllers\Web\AdminController@team')->name('admin.team');
+    Route::post('/team', 'App\Http\Controllers\Web\AdminController@addMember');
 });
 
 require __DIR__.'/auth.php';

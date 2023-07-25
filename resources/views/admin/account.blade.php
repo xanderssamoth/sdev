@@ -2,20 +2,12 @@
 
 @section('app-content')
 
-        <!-- ======= Hero Section ======= -->
-        <section id="hero" class="d-flex flex-column justify-content-center">
-            <div class="container" data-aos="zoom-in" data-aos-delay="100">
-                <h1>Administration</h1>
-                <p>Gestion des <span class="typed" data-typed-items="messages, projets, membres de l'équipe"></span></p>
-            </div>
-        </section><!-- End Hero -->
-
         <main id="main">
             <!-- ======= About Section ======= -->
             <section id="about" class="about">
                 <div class="container" data-aos="fade-up">
                     <div class="section-title">
-                        <h2>Messages</h2>
+                        <h2>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h2>
                     </div>
 
                     <div class="row g-lg-5">

@@ -34,7 +34,7 @@
             Administration
 @endif
 @if (Route::is('admin.account'))
-            {{ $user->firstname }}
+            {{ Auth::user()->firstname }}
 @endif
 @if (Route::is('admin.message'))
             Messages
@@ -57,15 +57,16 @@
         <header id="header" class="d-flex flex-column justify-content-center">
             <nav id="navbar" class="navbar nav-menu">
                 <ul>
-                    <li><a href="" class="nav-link active"><i class="bi bi-speedometer"></i> <span>Accueil</span></a></li>
-                    <li><a href="" class="nav-link"><i class="bi bi-person-gear"></i> <span>Mon compte</span></a></li>
-                    <li><a href="" class="nav-link"><i class="bi bi-chat-left-dots"></i> <span>Messages</span></a></li>
-                    <li><a href="" class="nav-link"><i class="bi bi-person-workspace"></i> <span>Projets</span></a></li>
+                    <li><a href="{{ route('admin.home') }}" class="nav-link active"><i class="bi bi-speedometer"></i> <span>Accueil</span></a></li>
+                    <li><a href="{{ route('admin.account') }}" class="nav-link"><i class="bi bi-person-gear"></i> <span>Mon compte</span></a></li>
+                    <li><a href="{{ route('admin.message') }}" class="nav-link"><i class="bi bi-chat-left-dots"></i> <span>Messages</span></a></li>
+                    <li><a href="{{ route('admin.project') }}" class="nav-link"><i class="bi bi-person-workspace"></i> <span>Projets</span></a></li>
+                    <li><a href="{{ route('admin.team') }}" class="nav-link"><i class="bi bi-person-workspace"></i> <span>Equipe</span></a></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </header><!-- End Header -->
 
-@yield('guest-content')
+@yield('app-content')
 
         <!-- ======= Footer ======= -->
         <footer id="footer">
