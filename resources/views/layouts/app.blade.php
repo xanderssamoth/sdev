@@ -57,11 +57,11 @@
         <header id="header" class="d-flex flex-column justify-content-center">
             <nav id="navbar" class="navbar nav-menu">
                 <ul>
-                    <li><a href="{{ route('admin.home') }}" class="nav-link active"><i class="bi bi-speedometer"></i> <span>Accueil</span></a></li>
-                    <li><a href="{{ route('admin.account') }}" class="nav-link"><i class="bi bi-person-gear"></i> <span>Mon compte</span></a></li>
-                    <li><a href="{{ route('admin.message') }}" class="nav-link"><i class="bi bi-chat-left-dots"></i> <span>Messages</span></a></li>
-                    <li><a href="{{ route('admin.project') }}" class="nav-link"><i class="bi bi-person-workspace"></i> <span>Projets</span></a></li>
-                    <li><a href="{{ route('admin.team') }}" class="nav-link"><i class="bi bi-person-workspace"></i> <span>Equipe</span></a></li>
+                    <li><a href="{{ route('admin.home') }}" class="nav-link{{ Route::is('admin.home') ? ' active' : '' }}"><i class="bi bi-speedometer"></i> <span>Accueil</span></a></li>
+                    <li><a href="{{ route('admin.account') }}" class="nav-link{{ Route::is('admin.account') ? ' active' : '' }}"><i class="bi bi-person-gear"></i> <span>Mon compte</span></a></li>
+                    <li><a href="{{ route('admin.message') }}" class="nav-link{{ Route::is('admin.message') ? ' active' : '' }}"><i class="bi bi-chat-left-dots"></i> <span>Messages</span></a></li>
+                    <li><a href="{{ route('admin.project') }}" class="nav-link{{ Route::is('admin.project') ? ' active' : '' }}"><i class="bi bi-person-workspace"></i> <span>Projets</span></a></li>
+                    <li><a href="{{ route('admin.team') }}" class="nav-link{{ Route::is('admin.team') ? ' active' : '' }}"><i class="bi bi-people"></i> <span>Equipe</span></a></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </header><!-- End Header -->
