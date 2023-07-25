@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () { return view('welcome'); }); // Home
-Route::get('/symlink', function () { return view('symlink'); }); // Generate symbolic link
+// Public
+Route::get('/', 'App\Http\Controllers\Web\HomeController@index')->name('home');
+Route::get('/symlink', 'App\Http\Controllers\Web\HomeController@symlink')->name('symlink');
 
 // Administration
 Route::middleware('auth')->group(function () {
@@ -18,7 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/account', 'App\Http\Controllers\Web\AdminController@updateAccount');
 
     Route::get('/message', 'App\Http\Controllers\Web\AdminController@message')->name('admin.message');
-    Route::post('/message', 'App\Http\Controllers\Web\AdminController@sendMessage');
 
     Route::get('/project', 'App\Http\Controllers\Web\AdminController@project')->name('admin.project');
     Route::post('/project', 'App\Http\Controllers\Web\AdminController@addProject');
