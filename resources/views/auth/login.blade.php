@@ -32,7 +32,9 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn w-100 btn-primary">Connexion</button>
+    @if ($users->success == false)
                                 <p class="mt-3 mb-0 text-center"><a href="{{ route('register') }}">S'inscrire</a></p>
+    @endif
                             </div>
                         </form>
                     </div>

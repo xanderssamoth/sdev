@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ApiClientManager;
 
@@ -32,9 +30,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // Find all user by role API URL
+        $user_by_role = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/Administrateur';
+        // Find all user by role API calling
+        $users = $this::$api_client_manager->call('GET', $user_by_role);
+
         Session::put('url.intended', URL::previous());
 
-        return view('auth.login');
+        return view('auth.login', ['users' => $users]);
     }
 
     /**

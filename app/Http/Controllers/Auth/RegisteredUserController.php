@@ -3,16 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use stdClass;
-use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Auth\Events\Registered;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ApiClientManager;
 
@@ -35,7 +30,7 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         // Find all user by role API URL
-        $user_by_role = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/Admnistrateur';
+        $user_by_role = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/Administrateur';
         // Find all user by role API calling
         $users = $this::$api_client_manager->call('GET', $user_by_role);
 
