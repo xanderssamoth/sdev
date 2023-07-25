@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="" name="description">
         <meta content="sdev, silasdev, silasmas, développement, web, mobile, community, manager" name="keywords">
-      
+
         <!-- Favicon -->
         <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{{ asset('assets/img/favicon/apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon/favicon-32x32.png') }}">
@@ -13,6 +13,8 @@
         <link rel="manifest" href="{{ asset('assets/img/favicon/site.webmanifest') }}">
 
         <!-- Vendor CSS Files -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/jquery/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/cropper/css/cropper.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/aos/aos.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}">
@@ -102,7 +104,7 @@
 
         <!-- Vendor JS Files -->
         <script src="{{ asset('assets/vendor/jquery/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+        <script src="{{ asset('assets/vendor/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
         <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
@@ -111,6 +113,8 @@
         <script src="{{ asset('assets/vendor/typed.js/typed.umd.js') }}"></script>
         <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
         <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+        <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+        <script src="{{ asset('assets/vendor/cropper/js/cropper.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/autosize/js/autosize.min.js') }}"></script>
 
         <!-- Main JS File -->

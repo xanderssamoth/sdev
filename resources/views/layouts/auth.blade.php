@@ -14,7 +14,6 @@
 
         <!-- Vendor CSS Files -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/jquery/jquery-ui/jquery-ui.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/cropper/css/cropper.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/aos/aos.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}">

@@ -2,7 +2,7 @@
 
 @section('app-content')
 
-        <main id="main">
+        <main id="main" class="ms-0">
             <!-- ======= About Section ======= -->
             <section id="about" class="about">
                 <div class="container" data-aos="fade-up">
