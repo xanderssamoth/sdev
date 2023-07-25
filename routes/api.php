@@ -12,6 +12,7 @@ Route::apiResource('project', 'App\Http\Controllers\API\ProjectController');
 Route::apiResource('role', 'App\Http\Controllers\API\RoleController');
 Route::apiResource('status', 'App\Http\Controllers\API\StatusController');
 Route::apiResource('user', 'App\Http\Controllers\API\UserController');
+Route::apiResource('website', 'App\Http\Controllers\API\WebsiteController');
 
 /*
 |--------------------------------------------------------------------------
