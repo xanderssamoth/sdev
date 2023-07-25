@@ -38,7 +38,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('user/find_by_role/{role_name}', 'App\Http\Controllers\API\UserController@findByRole')->name('user.api.find_by_role');
     Route::get('user/find_by_not_role/{role_name}', 'App\Http\Controllers\API\UserController@findByNotRole')->name('user.api.find_by_not_role');
     Route::get('user/find_by_status/{status_id}', 'App\Http\Controllers\API\UserController@findByStatus')->name('user.api.find_by_status');
-    Route::put('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.api.login');
+    Route::post('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.api.login');
     Route::put('user/withdraw_role/{id}', 'App\Http\Controllers\API\UserController@withdrawRole')->name('user.api.withdraw_role');
     Route::put('user/update_password/{id}', 'App\Http\Controllers\API\UserController@updatePassword')->name('user.api.update_password');
     Route::put('user/update_avatar_picture/{id}', 'App\Http\Controllers\API\UserController@updateAvatarPicture')->name('user.api.update_avatar_picture');

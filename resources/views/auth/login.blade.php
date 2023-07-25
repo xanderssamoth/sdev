@@ -1,47 +1,43 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.auth')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('auth-content')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+                    <h2>Se connecter</h2>
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <div class="row g-lg-5">
+                    <div class="col-lg-5 col-sm-7 mx-auto">
+                        <form action="{{ route('login') }}" method="post">
+    @csrf
+                            <div class="form-group">
+                                <input type="text" name="username" id="username" class="form-control" placeholder="E-mail ou n° de téléphone" aria-describedby="username_error_message" value="{{ !empty($inputs['username']) ? $inputs['username'] : '' }}" {{ !empty($inputs['username']) ? '' : 'autofocus' }}>
+    @if (!empty($response_error) AND $response_error->message == $inputs['username'])
+                                <p id="username_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
+    @endif
+                            </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                            <div class="form-group mt-3">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" aria-describedby="password_error_message" {{ !empty($inputs['username']) ? 'autofocus' : '' }}>
+    @if (!empty($response_error) AND $response_error->message == $inputs['password'])
+                                <p id="password_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
+    @endif
+                            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                            <div class="form-check my-4 text-center">
+                                <span class="d-inline-block">
+                                    <input type="checkbox" name="remember" id="remember" class="form-check-input">
+                                    <label role="button" for="remember" class="form-check-label">Se souvenir de moi</label>
+                                </span>
+                            </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn w-100 btn-primary">Connexion</button>
+                                <p class="mt-3 mb-0 text-center"><a href="{{ route('register') }}">S'inscrire</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection
