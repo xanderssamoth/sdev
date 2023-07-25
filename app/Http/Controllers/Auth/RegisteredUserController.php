@@ -39,13 +39,13 @@ class RegisteredUserController extends Controller
         // Find all user by role API calling
         $users = $this::$api_client_manager->call('GET', $user_by_role);
 
-        if (count($users->data) == 0) {
-            return view('auth.register');
+        if ($users->success) {
+            abort(403);
 
         } else {
-            abort(403);
+            return view('auth.register');
         }
-    }
+}
 
     /**
      * Handle an incoming registration request.
@@ -59,12 +59,13 @@ class RegisteredUserController extends Controller
             'lastname' => $request->register_lastname,
             'surname' => $request->register_surname,
             'gender' => $request->register_gender,
-            'birthdate' => $request->register_birthdate,
+            'birthdate' => explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[1] . '-' . explode('/', $request->register_birthdate)[0],
             'phone' => $request->register_phone,
             'email' => $request->register_email,
             'password' => $request->register_password,
             'confirm_password' => $request->confirm_password,
-            'status_id' => $request->status_id
+            'status_id' => $request->status_id,
+            'roles_ids' => $request->roles_ids
         ];
         // Register user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';

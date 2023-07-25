@@ -10,9 +10,10 @@
                         <form action="{{ route('register') }}" method="post">
     @csrf
                             <input type="hidden" name="status_id" value="3">
+                            <input type="hidden" name="roles_ids[]" value="1">
 
     @if (!empty($response_error))
-                            <p class="small text-center text-danger">{{ $response_error->data }}</p>
+                            <p class="small text-center text-danger">{{ !empty($response_error->data) ? $response_error->data : $response_error->message }}</p>
     @endif
 
                             <div class="row g-lg-3">

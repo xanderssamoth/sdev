@@ -46,7 +46,6 @@ class UserController extends BaseController
             'email' => $request->email,
             'profile_description' => $request->profile_description,
             'password' => $request->password,
-            'confirm_password' => $request->confirm_password,
             'status_id' => $request->status_id
         ];
         $users = User::all();
@@ -73,8 +72,8 @@ class UserController extends BaseController
         }
 
         if ($inputs['password'] != null OR $inputs['password'] != ' ') {
-            if ($inputs['confirm_password'] != $inputs['password']) {
-                return $this->handleError($inputs['confirm_password'], 'Veuillez confirmer le mot de passe', 400);
+            if ($request->confirm_password != $inputs['password']) {
+                return $this->handleError($request->confirm_password, 'Veuillez confirmer le mot de passe', 400);
             }
     
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
@@ -311,8 +310,8 @@ class UserController extends BaseController
                                     $query->where('role_name', $role_name);
                                 })->orderByDesc('created_at')->get();
 
-        if (is_null($users)) {
-            return $this->handleResponse(null, 'Aucun utilisateur trouvé');
+        if ($users->count() == 0) {
+            return $this->handleError(null, 'Aucun utilisateur trouvé');
         }
 
         return $this->handleResponse(ResourcesUser::collection($users), 'Utilisateurs trouvés');
@@ -330,8 +329,8 @@ class UserController extends BaseController
                                     $query->where('role_name', $role_name);
                                 })->orderByDesc('created_at')->get();
 
-        if (is_null($users)) {
-            return $this->handleResponse(null, 'Aucun utilisateur trouvé');
+        if ($users->count() == 0) {
+            return $this->handleError(null, 'Aucun utilisateur trouvé');
         }
 
         return $this->handleResponse(ResourcesUser::collection($users), 'Utilisateurs trouvés');    
