@@ -73,22 +73,6 @@
         <!-- ======= Footer ======= -->
         <footer id="footer">
             <div class="container">
-                <p class="mb-3"><img src="{{ asset('assets/img/logo-bg-1.png') }}" alt="" class="rounded-circle" width="100"></p>
-
-                <div class="row">
-                    <div class="col-lg-6 col-lg-8 col-12 mx-auto">
-                        <h3>Silas développe</h3>
-                        <p>
-                            Nous vous offrons des solutions informatiques, des accompagnements et conseil en stratégie marketing digitale et assure la couverture médiatique des évènements de tout genre.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="social-links">
-                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                </div>
-
                 <div class="copyright">
                     &copy; Copyright <strong><span>SDEV</span></strong>. Tous droits réservés
                 </div>
@@ -122,6 +106,7 @@
 
         <script type="text/javascript">
             autosize($('textarea'));
+            $('main').css('min-height', ($(document).height() - $('footer').height()));
         </script>
     </body>
 </html>
