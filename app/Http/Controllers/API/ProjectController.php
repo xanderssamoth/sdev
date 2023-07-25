@@ -188,4 +188,23 @@ class ProjectController extends BaseController
 
         return $this->handleResponse(ResourcesProject::collection($projects), 'Résultat de la recherche');
     }
+
+    /**
+     * Search all projects having a specific status
+     *
+     * @param  string $status_name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByStatus($status_name)
+    {
+        $projects = Project::whereHas('status', function ($query) use ($status_name) {
+                                    $query->where('status_name', $status_name);
+                                })->orderByDesc('created_at')->get();
+
+        if ($projects->count() == 0) {
+            return $this->handleError(null, 'Aucun projet trouvé');
+        }
+
+        return $this->handleResponse(ResourcesProject::collection($projects), 'Projets trouvés');
+    }
 }

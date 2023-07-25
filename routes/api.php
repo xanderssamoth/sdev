@@ -29,6 +29,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('message/search/{data}', 'App\Http\Controllers\API\MessageController@search')->name('message.api.search');
     // Project
     Route::get('project/search/{data}', 'App\Http\Controllers\API\ProjectController@search')->name('project.api.search');
+    Route::get('project/find_by_status/{status_name}', 'App\Http\Controllers\API\ProjectController@findByStatus')->name('project.api.find_by_status');
     // Status
     Route::get('status/search/{data}', 'App\Http\Controllers\API\StatusController@search')->name('status.api.search');
     // Role
