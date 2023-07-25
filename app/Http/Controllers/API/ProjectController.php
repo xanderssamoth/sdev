@@ -111,8 +111,7 @@ class ProjectController extends BaseController
             'project_url' => $request->project_url,
             'logo_url' => $request->logo_url,
             'status_id' => $request->status_id,
-            'user_id' => $request->user_id,
-            'updated_at' => now()
+            'user_id' => $request->user_id
         ];
         // Select all projects to check unique constraint
         $projects = Project::all();
@@ -132,7 +131,26 @@ class ProjectController extends BaseController
             }
         endforeach;
 
-        $project->update($inputs);
+        if ($inputs['project_name'] != null) {
+            $project->update([
+                'project_name' => $request->project_name,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['project_description'] != null) {
+            $project->update([
+                'project_description' => $request->project_description,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['project_url'] != null) {
+            $project->update([
+                'project_url' => $request->project_url,
+                'updated_at' => now(),
+            ]);
+        }
 
         if ($inputs['logo_url'] != null) {
             $replace = substr($inputs['logo_url'], 0, strpos($inputs['logo_url'], ',') + 1);
@@ -153,6 +171,20 @@ class ProjectController extends BaseController
             $project->update([
                 'logo_url' => '/storage/' . $image_url,
                 'updated_at' => now()
+            ]);
+        }
+
+        if ($inputs['status_id'] != null) {
+            $project->update([
+                'status_id' => $request->status_id,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['user_id'] != null) {
+            $project->update([
+                'user_id' => $request->user_id,
+                'updated_at' => now(),
             ]);
         }
 

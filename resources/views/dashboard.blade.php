@@ -5,7 +5,7 @@
         <!-- ======= Hero Section ======= -->
         <section id="hero" class="d-flex flex-column justify-content-center">
             <div class="container" data-aos="zoom-in" data-aos-delay="100">
-                <h1>Administration</h1>
+                <h1>Admin SDEV</h1>
                 <p>Gestion des <span class="typed" data-typed-items="messages, projets, membres de l'équipe"></span></p>
             </div>
         </section><!-- End Hero -->
