@@ -9,13 +9,16 @@
                     <div class="col-lg-5 col-sm-7 mx-auto">
                         <form action="{{ route('register') }}" method="post">
     @csrf
+                            <input type="hidden" name="status_id" value="3">
+
+    @if (!empty($response_error))
+                            <p class="small text-center text-danger">{{ $response_error->data }}</p>
+    @endif
+
                             <div class="row g-lg-3">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <input type="text" name="register_firstname" id="register_firstname" class="form-control" placeholder="Prénom" aria-describedby="firstname_error_message" value="{{ !empty($inputs['firstname']) ? $inputs['firstname'] : '' }}" {{ !empty($inputs['firstname']) ? '' : 'autofocus' }}>
-    @if (!empty($response_error) AND $response_error->message == $inputs['firstname'])
-                                        <p id="firstname_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
-    @endif
+                                        <input type="text" name="register_firstname" id="register_firstname" class="form-control{{ !empty($response_error) && $response_error->message == $inputs['firstname'] ? ' border-danger' : '' }}" placeholder="Prénom" value="{{ !empty($inputs['firstname']) ? $inputs['firstname'] : '' }}">
                                     </div>
                                 </div>
 
@@ -55,19 +58,13 @@
                             <div class="row g-lg-3">
                                 <div class="col-lg-6">
                                     <div class="form-group mt-3">
-                                        <input type="text" name="register_phone" id="register_phone" class="form-control" placeholder="Téléphone" aria-describedby="phone_error_message" value="{{ !empty($inputs['phone']) ? $inputs['phone'] : '' }}">
-    @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
-                                        <p id="phone_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
-    @endif
+                                        <input type="text" name="register_phone" id="register_phone" class="form-control{{ !empty($response_error) && $response_error->message == $inputs['phone'] ? ' border-danger' : '' }}" placeholder="Téléphone" value="{{ !empty($inputs['phone']) ? $inputs['phone'] : '' }}">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group mt-3">
-                                        <input type="text" name="register_email" id="register_email" class="form-control" placeholder="E-mail" aria-describedby="email_error_message" value="{{ !empty($inputs['email']) ? $inputs['email'] : '' }}">
-    @if (!empty($response_error) AND $response_error->message == $inputs['email'])
-                                        <p id="email_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
-    @endif
+                                        <input type="text" name="register_email" id="register_email" class="form-control{{ !empty($response_error) && $response_error->message == $inputs['email'] ? ' border-danger' : '' }}" placeholder="E-mail" value="{{ !empty($inputs['email']) ? $inputs['email'] : '' }}">
                                     </div>
                                 </div>
                             </div>
@@ -75,19 +72,13 @@
                             <div class="row g-lg-3">
                                 <div class="col-lg-6">
                                     <div class="form-group mt-3">
-                                        <input type="password" name="register_password" id="register_password" class="form-control" placeholder="Mot de passe" aria-describedby="password_error_message" {{ !empty($response_error) AND $response_error->message == $inputs['password'] ? 'autofocus' : '' }}>
-    @if (!empty($response_error) AND $response_error->message == $inputs['password'])
-                                        <p id="password_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
-    @endif
+                                        <input type="password" name="register_password" id="register_password" class="form-control{{ !empty($response_error) && $response_error->message == $inputs['password'] ? ' border-danger' : '' }}" placeholder="Mot de passe">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group mt-3">
-                                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirmer mot de passe" aria-describedby="confirm_password_error_message" {{ !empty($response_error) AND $response_error->message == $inputs['confirm_password'] ? 'autofocus' : '' }}>
-    @if (!empty($response_error) AND $response_error->message == $inputs['confirm_password'])
-                                        <p id="confirm_password_error_message" class="small mt-1 text-center text-danger">{{ $response_error->data }}</p>
-    @endif
+                                        <input type="password" name="confirm_password" id="confirm_password" class="form-control{{ !empty($response_error) && $response_error->message == $inputs['confirm_password'] ? ' border-danger' : '' }}" placeholder="Confirmer mot de passe">
                                     </div>
                                 </div>
                             </div>

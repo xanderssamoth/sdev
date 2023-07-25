@@ -52,28 +52,34 @@ class UserController extends BaseController
         $users = User::all();
 
         // Validate required fields
+        if ($inputs['firstname'] == null AND $inputs['firstname'] == ' ') {
+            return $this->handleError($inputs['firstname'], 'Donnez votre prénom');
+        }
+
         if ($inputs['email'] == null AND $inputs['phone'] == null) {
-            return $this->handleError('Donnez l\'e-mail ou le n° de téléphone');
+            return $this->handleError($inputs['email'], 'Donnez l\'e-mail ou le n° de téléphone');
         }
 
         if ($inputs['email'] == ' ' AND $inputs['phone'] == ' ') {
-            return $this->handleError('Donnez l\'e-mail ou le n° de téléphone');
+            return $this->handleError($inputs['email'], 'Donnez l\'e-mail ou le n° de téléphone');
         }
 
         if ($inputs['email'] == null AND $inputs['phone'] == ' ') {
-            return $this->handleError('Donnez l\'e-mail ou le n° de téléphone');
+            return $this->handleError($inputs['email'], 'Donnez l\'e-mail ou le n° de téléphone');
         }
 
         if ($inputs['email'] == ' ' AND $inputs['phone'] == null) {
-            return $this->handleError('Donnez l\'e-mail ou le n° de téléphone');
+            return $this->handleError($inputs['email'], 'Donnez l\'e-mail ou le n° de téléphone');
         }
 
-        if ($inputs['confirm_password'] != $inputs['password'] OR $inputs['confirm_password'] == null) {
-            return $this->handleError($inputs['confirm_password'], 'Veuillez confirmer le mot de passe', 400);
-        }
-
-        if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
-            return $this->handleError($inputs['password'], 'Il faut 8 caractères alphanumériques avec au moins une lettre majuscule et au moins un caractère spécial', 400);
+        if ($inputs['password'] != null OR $inputs['password'] != ' ') {
+            if ($inputs['confirm_password'] != $inputs['password']) {
+                return $this->handleError($inputs['confirm_password'], 'Veuillez confirmer le mot de passe', 400);
+            }
+    
+            if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
+                return $this->handleError($inputs['password'], 'Il faut 8 caractères alphanumériques avec au moins une lettre majuscule et au moins un caractère spécial', 400);
+            }    
         }
 
         if ($inputs['email'] != null) {

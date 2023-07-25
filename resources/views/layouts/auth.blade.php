@@ -37,6 +37,9 @@
 @if (Route::is('login'))
             Connexion
 @endif
+@if (!empty($exception))
+            {{ $exception->getMessage() }}
+@endif
         </title>
     </head>
 

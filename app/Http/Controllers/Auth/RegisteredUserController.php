@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use stdClass;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ApiClientManager;
 
 /**
@@ -32,7 +34,17 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        // Find all user by role API URL
+        $user_by_role = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/Admnistrateur';
+        // Find all user by role API calling
+        $users = $this::$api_client_manager->call('GET', $user_by_role);
+
+        if (count($users->data) == 0) {
+            return view('auth.register');
+
+        } else {
+            abort(403);
+        }
     }
 
     /**
@@ -40,7 +52,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse|View
     {
         $inputs = [
             'firstname' => $request->register_firstname,
@@ -54,11 +66,45 @@ class RegisteredUserController extends Controller
             'confirm_password' => $request->confirm_password,
             'status_id' => $request->status_id
         ];
+        // Register user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+        // Register user API calling
+        $user = $this::$api_client_manager->call('POST', $url_user, $inputs);
 
-        event(new Registered($user));
+        if (trim($inputs['password']) == null) {
+            $response_error = new stdClass();
 
-        Auth::login($user);
+            $response_error->message = $inputs['password'];
+            $response_error->data = 'Le mot de passe est obligatoire';
 
-        return redirect(RouteServiceProvider::HOME);
+            return view('auth.register', [
+                'inputs' => $inputs,
+                'response_error' => $response_error
+            ]);
+        }
+
+        if ($user->success) {
+            if ($user->data->phone != null) {
+                if (Auth::attempt(['phone' => $user->data->phone, 'password' => $inputs['password']])) {
+                    $request->session()->regenerate();
+
+                    return Redirect::to('/admin');
+                }
+            }
+
+            if ($user->data->email != null) {
+                if (Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']])) {
+                    $request->session()->regenerate();
+
+                    return Redirect::to('/admin');
+                }
+            }
+
+        } else {
+            return view('auth.register', [
+                'inputs' => $inputs,
+                'response_error' => $user
+            ]);
+        }
     }
 }
