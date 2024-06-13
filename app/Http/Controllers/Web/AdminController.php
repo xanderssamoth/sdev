@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Controllers\ApiClientManager;
 
 /**
  * @author Xanders
@@ -16,7 +14,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this::$api_client_manager = new ApiClientManager();
+        // $this::$api_client_manager = new ApiClientManager();
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -27,24 +25,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        // Find all messages API URL
-        $all_messages = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message';
-        // Find all messages API calling
-        $messages = $this::$api_client_manager->call('GET', $all_messages);
-        // Find all projects API URL
-        $all_projects = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/project';
-        // Find all projects API calling
-        $projects = $this::$api_client_manager->call('GET', $all_projects);
-        // Find all collaborators API URL
-        $all_collaborators = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/Collaborateur';
-        // Find all collaborators API calling
-        $collaborators = $this::$api_client_manager->call('GET', $all_collaborators);
-
-        return view('dashboard', [
-            'messages' => $messages->data,
-            'projects' => $projects->data,
-            'collaborators' => $collaborators->data,
-        ]);
+        // [
+        //     'messages' => $messages->data,
+        //     'projects' => $projects->data,
+        //     'collaborators' => $collaborators->data,
+        // ]
+        return view('dashboard');
     }
 
     /**
@@ -91,7 +77,7 @@ class AdminController extends Controller
     /**
      * POST: Update account
      *
-     * @return 
+     * @return
      */
     public function updateAccount()
     {
@@ -101,7 +87,7 @@ class AdminController extends Controller
     /**
      * POST: Add a project
      *
-     * @return 
+     * @return
      */
     public function addProject()
     {
@@ -111,7 +97,7 @@ class AdminController extends Controller
     /**
      * POST: Add a team member
      *
-     * @return 
+     * @return
      */
     public function addMember()
     {

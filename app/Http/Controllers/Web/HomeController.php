@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ApiClientManager;
+use App\Http\Controllers\Controller;
+use App\Models\Project;
 
 /**
  * @author Xanders
@@ -27,7 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $portofolio = Project::get();
+        return view('welcome', compact("portofolio"));
+    }
+    public function detail($id)
+    {
+        $i=$id;
+        return view('portfolio-details',compact("i"));
     }
 
     /**

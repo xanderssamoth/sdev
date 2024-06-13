@@ -6,13 +6,15 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-*/
+ */
 // Public
 Route::get('/', 'App\Http\Controllers\Web\HomeController@index')->name('home');
 Route::get('/symlink', 'App\Http\Controllers\Web\HomeController@symlink')->name('symlink');
+Route::get('/detail/{id}', 'App\Http\Controllers\Web\HomeController@detail')->name('detail');
 
 // Administration
 Route::middleware('auth')->group(function () {
+    Route::get('/admin', 'App\Http\Controllers\Web\HomeController@index')->name('admin.home');
     Route::get('/admin', 'App\Http\Controllers\Web\AdminController@index')->name('admin.home');
 
     Route::get('/account', 'App\Http\Controllers\Web\AdminController@account')->name('admin.account');
@@ -27,4 +29,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/team', 'App\Http\Controllers\Web\AdminController@addMember');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
